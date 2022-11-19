@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Starting from './components/Starting';
+import GameContainer from './components/GameContainer';
 
-function App() {
+export default function App() {
+  const [start, setStart] = React.useState(false);
+  const [game, setGame] = React.useState(0);
+
+  function selectGame(option) {
+    setGame(option);
+  }
+  function startGame() {
+    setStart(true);
+    setGame(1);
+  }
+
+  const element = start ? <GameContainer game={game} selectGame={selectGame} /> : <Starting start={startGame} />;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+      {element}
     </div>
-  );
+  )
 }
-
-export default App;
