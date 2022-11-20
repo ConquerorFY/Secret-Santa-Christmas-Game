@@ -425,10 +425,10 @@ setTimeout(function () {
             const randomize = Math.random();
             if (randomize < 0.2) this.enemies.push(new Cloud1(this));
             else if (randomize < 0.4) this.enemies.push(new Cloud2(this));
-            else if (randomize < 0.5) this.enemies.push(new House(this));
+            else if (randomize < 0.5) this.enemies.push(new Cloud3(this));
             else if (randomize < 0.6) this.enemies.push(new Bird2(this));
             else if (randomize < 0.8) this.enemies.push(new Bird1(this));
-            else this.enemies.push(new Cloud3(this));
+            else this.enemies.push(new House(this));
             // this.enemies.push(new House(this));
         }
         addExplosion(enemy) {

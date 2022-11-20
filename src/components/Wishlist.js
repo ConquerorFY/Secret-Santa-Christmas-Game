@@ -1,5 +1,6 @@
 import React from "react";
 import thumbs from "../images/thumbs-up.jpg";
+import { crypt, decrypt } from "../hooks/useEncryption";
 
 export default function Wishlist() {
     const [itemList, setItemList] = React.useState({});
@@ -39,13 +40,14 @@ export default function Wishlist() {
                     "item-2": "Coffee",
                     "item-3": "Cookies"
                 });
+                break;
             default:
                 break;
         }
     }
     function submitWishlist() {
         // Guide: https://spin.atomicobject.com/2022/03/09/create-export-react-frontend/
-        const fileData = JSON.stringify(itemList);
+        const fileData = crypt("salt", JSON.stringify(itemList));
         const blob = new Blob([fileData], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
