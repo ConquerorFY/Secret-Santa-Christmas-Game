@@ -2,8 +2,8 @@ import React from "react";
 
 import player from "../assets/christmas/Santa_Reindeer.png";
 
-import bird1 from "../assets/christmas/Bird_Enemy_1.jpg";
-import bird2 from "../assets/christmas/Bird_Enemy_2.jpg";
+import bird1 from "../assets/christmas/Bird_Enemy_1.png";
+import bird2 from "../assets/christmas/Bird_Enemy_2.png";
 import cloud1 from "../assets/christmas/Cloud_1.png";
 import cloud2 from "../assets/christmas/Cloud_2.png";
 import cloud3 from "../assets/christmas/Cloud_3.png";

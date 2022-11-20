@@ -1,5 +1,5 @@
 import React from "react";
-import thumbs from "../images/thumbs-up.jpg";
+import thumbs from "../images/thumbs-up.png";
 import { crypt, decrypt } from "../hooks/useEncryption";
 
 export default function Wishlist() {
