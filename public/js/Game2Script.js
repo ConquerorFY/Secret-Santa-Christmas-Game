@@ -20,9 +20,10 @@ setTimeout(function () {
                 if ((e.key === "ArrowUp" || e.key === "ArrowDown")
                     && this.game.keys.indexOf(e.key) === -1) {
                     this.game.keys.push(e.key);
-                } else if (e.key === 'd') {
-                    this.game.debug = !this.game.debug;
                 }
+                // } else if (e.key === 'd') {
+                //     this.game.debug = !this.game.debug;
+                // }
             });
             window.addEventListener('keyup', e => {
                 if (this.game.keys.indexOf(e.key) > -1) {
@@ -117,7 +118,8 @@ setTimeout(function () {
         constructor(game) {
             this.game = game;
             this.x = this.game.width;
-            this.speedX = Math.random() * -2.5 - 0.5;
+            // this.speedX = Math.random() * -3.5 - 0.5;
+            this.speedX = -7;
             this.markedForDeletion = false;
             this.frameX = 0;
             this.frameY = 0;
@@ -349,7 +351,7 @@ setTimeout(function () {
             this.particles = [];
             this.explosions = [];
             this.enemyTimer = 0;
-            this.enemyInterval = 2000;
+            this.enemyInterval = 1500;
             this.gameOver = false;
             this.score = 0;
             this.winningScore = 6;
@@ -375,6 +377,7 @@ setTimeout(function () {
                             this.particles.push(new Particle(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
                         }
                         this.score++;
+                        this.speed += .5;
                     }
                     else {
                         if (!this.gameOver) this.player.health--;
@@ -422,10 +425,10 @@ setTimeout(function () {
             const randomize = Math.random();
             if (randomize < 0.2) this.enemies.push(new Cloud1(this));
             else if (randomize < 0.4) this.enemies.push(new Cloud2(this));
-            else if (randomize < 0.5) this.enemies.push(new Cloud3(this));
+            else if (randomize < 0.5) this.enemies.push(new House(this));
             else if (randomize < 0.6) this.enemies.push(new Bird2(this));
             else if (randomize < 0.8) this.enemies.push(new Bird1(this));
-            else this.enemies.push(new House(this));
+            else this.enemies.push(new Cloud3(this));
             // this.enemies.push(new House(this));
         }
         addExplosion(enemy) {

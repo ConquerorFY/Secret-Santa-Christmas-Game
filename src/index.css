@@ -22,6 +22,8 @@ body {
   padding-top: 30vh;
   min-height: 100vh;
   background-image: url('./images/christmas-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   font-family: 'Mountains of Christmas', cursive;
 }
@@ -537,6 +539,12 @@ body {
   border-radius: 10px;
   background-size: cover;
   box-shadow: 10px 10px 10px rgb(94, 92, 92);
+}
+
+.wishlist-content-area .complete {
+  display: block;
+  margin: auto;
+  width: 250px;
 }
 
 .wishlist-content-area div {

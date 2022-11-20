@@ -1,4 +1,5 @@
 import React from "react";
+import thumbs from "../images/thumbs-up.jpg";
 
 export default function Wishlist() {
     const [itemList, setItemList] = React.useState({});
@@ -12,6 +13,10 @@ export default function Wishlist() {
         }));
     }
     function suggestionOptions(type) {
+        if (isSelected === type) {
+            setIsSelected("");
+            return;
+        }
         setIsSelected(type);
         switch (type) {
             case "beauty":
@@ -21,20 +26,19 @@ export default function Wishlist() {
                     "item-3": "Essential Oil"
                 });
                 break;
-            case "healthcare":
+            case "living":
                 setItemList({
-                    "item-1": "Medicine",
-                    "item-2": "Pills",
-                    "item-3": "Thermometer"
+                    "item-1": "Difuser",
+                    "item-2": "Deco Items",
+                    "item-3": "Appliances"
                 });
                 break;
-            case "daily":
+            case "food":
                 setItemList({
-                    "item-1": "Mug",
-                    "item-2": "Cup",
-                    "item-3": "Jar"
+                    "item-1": "Mixed Nuts",
+                    "item-2": "Coffee",
+                    "item-3": "Cookies"
                 });
-                break;
             default:
                 break;
         }
@@ -45,7 +49,7 @@ export default function Wishlist() {
         const blob = new Blob([fileData], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.download = "wishlist.json";
+        link.download = "wishlist.secret";
         link.href = url;
         link.click();
         setIsSubmitted(true);
@@ -60,27 +64,31 @@ export default function Wishlist() {
             <div className="wishlist-options">
                 <h4>Suggested Options: </h4>
                 <div>
-                    <div id="healthcare" onClick={() => suggestionOptions("healthcare")}
-                        style={{ color: isSelected === "healthcare" ? "white" : "", backgroundColor: isSelected === "healthcare" ? "red" : "" }}>Health Care</div>
+                    <div id="living" onClick={() => suggestionOptions("living")}
+                        style={{ color: isSelected === "living" ? "white" : "", backgroundColor: isSelected === "living" ? "red" : "" }}>Home Living</div>
                     <div id="beauty" onClick={() => suggestionOptions("beauty")}
                         style={{ color: isSelected === "beauty" ? "white" : "", backgroundColor: isSelected === "beauty" ? "red" : "" }}>Beauty</div>
-                    <div id="daily" onClick={() => suggestionOptions("daily")}
-                        style={{ color: isSelected === "daily" ? "white" : "", backgroundColor: isSelected === "daily" ? "red" : "" }}>Daily Items</div>
+                    <div id="food" onClick={() => suggestionOptions("food")}
+                        style={{ color: isSelected === "food" ? "white" : "", backgroundColor: isSelected === "food" ? "red" : "" }}>Food</div>
                 </div>
             </div>
             <div className="wishlist-content-area">
-                <div>
-                    <label htmlFor="item-1">1.</label>
-                    <input type="text" name="item-1" id="item-1" className="wishlist-input" placeholder="Item 1" onInput={handleInput} value={itemList["item-1"]} />
-                </div>
-                <div>
-                    <label htmlFor="item-2">2.</label>
-                    <input type="text" name="item-2" id="item-2" className="wishlist-input" placeholder="Item 2" onInput={handleInput} value={itemList["item-2"]} />
-                </div>
-                <div>
-                    <label htmlFor="item-3">3.</label>
-                    <input type="text" name="item-3" id="item-3" className="wishlist-input" placeholder="Item 3" onInput={handleInput} value={itemList["item-3"]} />
-                </div>
+                {
+                    isSelected === "" ? <>
+                        <div>
+                            <label htmlFor="item-1">1.</label>
+                            <input type="text" name="item-1" id="item-1" className="wishlist-input" placeholder="Item 1" onInput={handleInput} />
+                        </div>
+                        <div>
+                            <label htmlFor="item-2">2.</label>
+                            <input type="text" name="item-2" id="item-2" className="wishlist-input" placeholder="Item 2" onInput={handleInput} />
+                        </div>
+                        <div>
+                            <label htmlFor="item-3">3.</label>
+                            <input type="text" name="item-3" id="item-3" className="wishlist-input" placeholder="Item 3" onInput={handleInput} />
+                        </div>
+                    </> : <img src={thumbs} alt="thumbs-up" className="complete" />
+                }
                 <button className="submit" onClick={submitWishlist}>Confirm</button>
             </div>
         </div>
